@@ -44,6 +44,8 @@ class Wall:
 									  'position': self.parameters['position'],
 									  'orientation': self.parameters['orientation'],
 									  "edges": True})
+									   'edges': self.parameters['edges']
+		
 		self.objects.append(self.parentSection) 
 		
 	# Getter
