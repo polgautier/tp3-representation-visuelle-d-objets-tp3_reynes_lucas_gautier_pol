@@ -83,27 +83,22 @@ def Q5c2():
 	return configuration    
 
 def Q5d():      
-	pass
-	
-def Q6():  
-	pass  
- 
+	wall1 = Wall({'width':7, 'height':2.6,}) 
+	opening1 = Opening({'position': [2, 0, 0], 'width':0.9, 'height':2.15, 'thickness':0.2, 'color': [0.7, 0.7, 0.7]}) 
+	section = wall1.findSection(opening1)
+
 def main():
-	# Enlever un des commentaires pour la question traitée
-	
-	#configuration = Q1a()
-	# configuration = Q1b_f()
-	#configuration = Q2b()
-	#configuration = Q2c()
-	#configuration = Q3a()
-	configuration = Q4a()
-	# configuration = Q5a()
-	# configuration = Q5b()
-	# configuration = Q5c1()
-	# configuration = Q5c2() 
-	# configuration = Q5d()
-	# configuration = Q6()
-	configuration.display()
+	    house=House()
+    window = Window({'position': [4, 0.14, 1.2]})
+    door = Door({'position': [2, 0.15,0]})
+    wall = Wall({'width':7, 'height':2.6}).add(window).add(door)
+    house.add(wall)
+    house.objects.append(Wall({'position': [0, 4.2, 0], 'width':4, 'height':2.6, 'edges': True, 'orientation': -90}))
+    house.objects.append(Wall({'position': [0, 4.2, 0], 'width':7, 'height':2.6, 'edges': True, 'orientation': 0}))
+    house.objects.append(Wall({'position': [7 , 0.2, 0], 'width':4, 'height':2.6, 'edges': True, 'orientation': 90}))
+    Configuration().add(house).display()
+
+
 		 
 # Calls the main function
 if __name__ == "__main__":
