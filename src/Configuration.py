@@ -149,11 +149,24 @@ class Configuration:
     
     # Processes the MOUSEBUTTONDOWN event
     def processMouseButtonDownEvent(self):
-        pass
+        if self.event.button==4:
+            gl.glScalef(1.2,1.2,1.2)
+        if self.event.button==5:
+            gl.glScalef(0.8,0.8,0.8)
+
     
     # Processes the MOUSEMOTION event
     def processMouseMotionEvent(self):
-        pass
+            #translation
+        if pygame.mouse.get_pressed()[2]:
+            x,z=self.event.rel
+            gl.glTranslatef(x//5,0,0)
+            gl.glTranslatef(0,0,z//5)
+        if pygame.mouse.get_pressed()[0]:
+            x,z=self.event.rel
+            gl.glRotatef(x,1,0,0)
+            gl.glRotatef(z,0,0,1)
+
          
     # Displays on screen and processes events    
     def display(self): 
