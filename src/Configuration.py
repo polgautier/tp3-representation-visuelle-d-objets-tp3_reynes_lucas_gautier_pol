@@ -135,17 +135,22 @@ class Configuration:
             x.draw()
             
     # Processes the KEYDOWN event
-    def processKeyDownEvent(self):
-        # Rotates around the z-axis                       
-        if self.event.dict['unicode'] == 'Z' or (self.event.mod & pygame.KMOD_SHIFT and self.event.key == pygame.K_z):
+       def processKeyDownEvent(self):
+        # Rotates around the z-axis                        
+        if self.event.dict['unicode'] == 'Z':
             gl.glRotate(-2.5, 0, 0, 1)                     
-        elif self.event.dict['unicode'] == 'z' or self.event.key == pygame.K_z:
+        elif self.event.dict['unicode'] == 'z':
             gl.glRotate(2.5, 0, 0, 1) 
-        
+        #zoom de dézoom
+        elif self.event.key == pygame.K_PAGEDOWN:
+            gl.glScalef(0.8,0.8,0.8)
+        elif self.event.key == pygame.K_PAGEUP:
+            gl.glScalef(1.2,1.2,1.2)
         # Draws or suppresses the reference frame
-        elif self.event.dict['unicode'] == 'a' or self.event.key == pygame.K_a:
+        elif self.event.dict['unicode'] == 'a':
             self.parameters['axes'] = not self.parameters['axes']
             pygame.time.wait(300)
+
     
     # Processes the MOUSEBUTTONDOWN event
     def processMouseButtonDownEvent(self):
