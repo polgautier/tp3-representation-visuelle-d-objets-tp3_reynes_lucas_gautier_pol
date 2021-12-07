@@ -129,19 +129,19 @@ class Section:
 
         return L_section
 
-		          
-		
 	# Draws the edges
-	def drawEdges(self):
-		# A compléter en remplaçant pass par votre code
-		gl.glPolygonMode(gl.GL_FRONT_AND_BACK, gl.GL_LINE) 
-		for face in self.faces:
-			gl.glBegin(gl.GL_QUADS) 
-			gl.glColor3fv([0]*3)
-			for pointInd in face: 
-				gl.glVertex3fv(self.vertices[pointInd])
-			gl.glEnd()           
-					
+    def drawEdges(self):
+        for j in range (len(self.faces)):
+            # on trace les faces : GL_FILL
+            gl.glPolygonMode(gl.GL_FRONT_AND_BACK,gl.GL_LINE) 
+             # Tracé d’un quadrilatère
+            gl.glBegin(gl.GL_QUADS)
+            # Couleur gris moyen
+            gl.glColor3fv([0.1, 0.1, 0.1]) 
+            for n in self.faces[j]:
+                gl.glVertex3fv(self.vertices[n])
+            gl.glEnd()  
+
 	# Draws the faces
 	def draw(self):
 		gl.glPushMatrix()
