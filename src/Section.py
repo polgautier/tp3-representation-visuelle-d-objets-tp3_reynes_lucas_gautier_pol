@@ -74,13 +74,62 @@ class Section:
 
 	# Checks if the opening can be created for the object x
 	def canCreateOpening(self, x):
-		# A compléter en remplaçant pass par votre code
-		pass      
+        if self.parameters['position'][0]<=x.parameters['position'][0] and \
+           self.parameters['position'][2]<=x.parameters['position'][2] and \
+           self.parameters['position'][0]+self.parameters['width']>=x.parameters['position'][0]+x.parameters['width'] and \
+           self.parameters['position'][2]+self.parameters['height']>=x.parameters['position'][2]+x.parameters['height']:
+            return True
+        else: 
+            return False
+    
 		
 	# Creates the new sections for the object x
 	def createNewSections(self, x):
-		# A compléter en remplaçant pass par votre code
-		pass              
+	    def  createNewSections(self, x):
+        #test possibilité d'ouvertures
+        if self.canCreateOpening(x):
+
+            #création liste de sortie
+            L_section=[]
+
+            #création des variables
+            x1,y,z=self.parameters['position'][0],self.parameters['position'][1],self.parameters['position'][2]
+            w=self.parameters['width']
+            h=self.parameters['height']
+            xs,ys,zs=x.parameters['position'][0],x.parameters['position'][1],x.parameters['position'][2]
+            ws=x.parameters['width']
+            hs=x.parameters['height']
+
+            #test de création de la section droite
+            if  xs-x1>0:
+                L_section.append(Section({'position':[x1,y,z], \
+                                      'width': xs-x1, \
+                                      'height': h}))
+
+            #test de création de la section gauche
+            if  (x1+w)-(xs+ws)>0:
+                position=[xs+ws,y,0]
+                L_section.append(Section({'position':position, \
+                                      'width': (x1+w)-(xs+ws), \
+                                      'height': h}))
+
+            #test de création de la section basse
+            if  (zs)-(z)>0:
+                position=[xs,y,0]
+                L_section.append(Section({'position':position, \
+                                      'width': ws, \
+                                      'height': (zs)-(z)}))
+
+            #test de création de la section haute
+            if  (z+h)-(zs+hs)>0:
+                position=[xs,y,(zs)-(z)+hs]
+                L_section.append(Section({'position':position, \
+                                      'width': ws, \
+                                      'height':  (z+h)-(zs+hs)}))
+
+        return L_section
+
+		          
 		
 	# Draws the edges
 	def drawEdges(self):
