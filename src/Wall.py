@@ -82,6 +82,5 @@ class Wall:
 					
 	# Draws the faces
 	def draw(self):
-		
-		for obj3d in self.objects:
-			obj3d.draw() 
+	for obj3d in self.objects:
+	obj3d.draw() 
