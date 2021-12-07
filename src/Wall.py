@@ -63,12 +63,25 @@ class Wall:
 		return None
 	
 	# Adds an object    
-	def add(self, x):    
-		# A compléter en remplaçant pass par votre code
-		pass  
+	def add(self, x):       
+        section=self.findSection(x)
+        if section!=None:
+            L_section=Section.createNewSections(section[1],x)
+            self.objects.pop(section[0])
+            self.objects.append(x)
+            if isinstance(x, Door):
+                self.add(Opening({'position': x.parameters['position'], \
+                                  'width': x.parameters['width'], \
+                                  'height': x.parameters['height'], \
+                                  'thickness': x.parameters['thickness'], \
+                                  'color': self.parameters['color']}))
+            self.objects.extend(L_section)
+        return self
+
+ 
 					
 	# Draws the faces
 	def draw(self):
-		# A compléter en remplaçant pass par votre code
+		
 		for obj3d in self.objects:
 			obj3d.draw() 
