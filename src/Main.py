@@ -26,10 +26,10 @@ def Q2b():
 			) 
 
 def Q2c():
-	# Ecriture en utilisant le chaînage
-	return Configuration().add(
-			Section({'position': [1, 1, 0], 'width':7, 'height':2.6, 'edges': True})
-			)
+	section = Section({'position': [1, 1, 0], 'width':7, 'height':2.6, 'edges': True })
+	Configuration().add(section).display()
+
+		
 
 def Q3a():
 	return Configuration().add(
