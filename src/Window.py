@@ -39,14 +39,13 @@ class Window:
         self.objects = []       
 
         # Adds Section objects for this object
-        for i in range(self.parameters['wings']):
-            # Adds Section for this object
-            section = Section({'position': [i*self.parameters['width']/self.parameters['wings'], 0, 0],
-                                      'width': self.parameters['width']/self.parameters['wings'], \
+            # Adds a Section for this object
+        self.parentSection = Section({'position': self.parameters['position'], \
+                                      'width': self.parameters['width'], \
                                       'height': self.parameters['height'], \
                                       'thickness': self.parameters['thickness'], \
                                       'color': self.parameters['color']})
-            self.objects.append(section) 
+        self.objects.append(self.parentSection)  
         
     # Getter
     def getParameter(self, parameterKey):
@@ -70,9 +69,10 @@ class Window:
         gl.glTranslatef(self.parameters['position'][0], self.parameters['position'][1], self.parameters['position'][2])
         
         # Draws the objects    
-        for x in self.objects:
-            x.drawEdges()
-            x.draw()
+            def draw(self):
+        for elem in self.objects:
+            elem.draw()
+
             
         # Restores the frame coordinates   
         gl.glPopMatrix() 
